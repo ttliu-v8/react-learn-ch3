@@ -1,7 +1,5 @@
 import React from 'react';
-//import logo from './logo.svg';
 import Route from '../router'
-import {NavLink} from 'react-router-dom'
 
 function App () {
   return (

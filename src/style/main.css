@@ -7,10 +7,16 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+input[type="button"], input[type="submit"], input[type="reset"] {
+    appearance: none;
+}
+input:focus, textarea:focus {
+    outline: none;
+}
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 i{
     font-style: normal;
@@ -69,7 +75,8 @@ code {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size:16px;
+    font-size:14px;
+    background: #fff;
 }
 
 .app-footer .main-menu-item {

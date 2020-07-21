@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+function promise (fn) {
+  if (typeof this !== 'object') {
+    throw new TypeError('Promises must be constructed via new');
+  }
+  if (typeof fn !== 'function') {
+    throw new TypeError('Promise constructor\'s argument is not a function');
+  }
+  this.state = "pending"; //定义状态
+  this.msg="";
+  var process=arguments[0];
+  var that=this;
+  process(function(){
+    that.state="resolve"
+    that.msg=arguments[0]
+  },function(){
+    that.state="reject"
+    that.msg=arguments[0]
+  })
+  return this
+}
+promise.prototype.then=function(){
+  constructor:promise
+  if(this.state == "resolve"){
+    arguments[0](this.msg)
+  }else if(this.status=='reject'&&arguments[1]){
+    arguments[1](this.msg)
+  }
+  promise=new this.constructor(function (resolve,reject) {resolve("2")}) //每次调用then之后重新返回一个新的promise实例进行下一步then的调用
+  //   console.log(this)
+  //   console.log(promise)
+  return promise
+}
+
+window.onload=()=>{
+  var mm =  new promise(function(resolve,reject){
+    resolve("1")
+  })
+  mm.then(function(res){ //then回调
+    console.log(res)
+  }).then(function(res){
+    console.log(res)
+  })
+}
+</script>
+</body>
+</html>

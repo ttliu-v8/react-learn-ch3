@@ -3,15 +3,17 @@ import {HashRouter, Switch, Route, Redirect,BrowserRouter} from 'react-router-do
 import asyncComponent from '../utils/asyncComponent'
 
 const profile = asyncComponent(()=>import('../pages/profile/profile'))
+const login = asyncComponent(()=>import('../pages/login/login'))
 export default class RouteConfig extends Component {
   render () {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
-          <Route path='/profile' exact component={profile}/>
-          <Redirect exact from='/' to='/profile'/>
+          <Route path="/profile" exact component={profile}/>
+          <Route path="/login" exact component={login}/>
+          <Redirect exact from="/" to="/profile"/>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     )
   }
 }

@@ -1,0 +1,72 @@
+.user-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    border: 1px solid #fff;
+    margin-left:30px;
+
+}
+.profile-header{
+    display: flex;
+    align-items: center;
+    background: #3190e8;
+    height: 136px;
+}
+.btn-login{
+    border:0;
+    background: transparent;
+    color:#fff;
+    font-size:16px;
+    margin-bottom:5px;
+}
+.user-info{
+    margin-left:15px;
+    color:#fff;
+}
+.account-info{
+    background: #fff;
+}
+.account-info li{
+    display: inline-block;
+    width: 33.3%;
+    text-align: center;
+    border-right: 1px solid #dddddd;
+    height: 65px;
+    color:#666;
+
+}
+.account-info li:last-child{
+    border-right:0;
+}
+.account-info .p-no{
+    margin-top:8px;
+}
+.account-info .account-no{
+    font-size:20px;
+    font-weight: bold;
+}
+.menu-list{
+    background: #fff;
+    margin-top:8px;
+}
+.menu-list li{
+    height: 40px;
+    display: flex;
+    padding:0 5px 0 30px;
+    border-bottom:1px solid #ddd;
+    align-items: center;
+    justify-content: space-between;
+}
+.menu-item-icon{
+    color:#3190e8;
+    padding-right:5px;
+}
+.txt-orange{
+    color:#f90;
+}
+.txt-red{
+    color:#ff5f3e;
+}
+.txt-green{
+    color:#6ac20b;
+}
