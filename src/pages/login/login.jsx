@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
 import './login.css'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import {setStore} from '../../utils/commons'
+import {saveUserInfo} from '../../store/action'
+import {getImgPath} from '../../utils/commons'
 import Alert from '../../components/alert_tip/alert_tip'
 import API from '../../api/api'
 
@@ -37,6 +41,11 @@ class Login extends Component {
       captchaCodeImg: res.code
     })
   }
+  closeTip = () => {
+    this.setState({
+      hasAlert: false
+    })
+  }
   mobileLogin = async () =>{
     let isValidate,alertText
     if (!this.state.userAccount) {
@@ -56,6 +65,24 @@ class Login extends Component {
       })
       return
     }
+    let data = {
+      username:this.state.userAccount,
+      password: this.state.password,
+      captcha_code:this.state.codeNumber
+    }
+    let userInfo = await API.accountLogin(data)
+    if(userInfo.tip){
+      this.setState({
+        hasAlert:true,
+        alertText:userInfo.response.message
+      })
+      this.getCaptchaCode()
+      return
+    }
+    setStore('user_id',userInfo.user_id)
+    userInfo.imgPath = userInfo.avatar.indexOf('/') !== -1? '/img/' + userInfo.avatar:getImgPath()
+    this.props.saveUserInfo(userInfo)
+    this.props.history.push('/profile')
   }
   render () {
     return (
@@ -77,7 +104,7 @@ class Login extends Component {
                    onClick={this.changePasswordType.bind(this)}></i>
               </li>
               <li>
-                <input className="input" placeholder="验证码"/>
+                <input className="input" placeholder="验证码" value={this.state.codeNumber} onChange={this.handleInput.bind(this, 'codeNumber')}/>
                 <img src={this.state.captchaCodeImg} alt="验证码" className="yzm"/>
                 <span className="btn-yzm" onClick={this.getCaptchaCode.bind(this)}>看不清<br/>换一张</span>
               </li>
@@ -91,5 +118,15 @@ class Login extends Component {
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.userInfo
+  }
+}
 
-export default Login
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveUserInfo: (userInfo) => dispatch(saveUserInfo(userInfo))
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Login)

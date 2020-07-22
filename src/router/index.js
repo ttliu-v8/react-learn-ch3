@@ -10,7 +10,7 @@ export default class RouteConfig extends Component {
       <HashRouter>
         <Switch>
           <Route path="/profile" exact component={profile}/>
-          <Route path="/login" exact component={login}/>
+          <Route path="/login" component={login}/>
           <Redirect exact from="/" to="/profile"/>
         </Switch>
       </HashRouter>

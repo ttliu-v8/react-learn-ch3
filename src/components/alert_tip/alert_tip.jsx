@@ -19,8 +19,7 @@ class AlertTip extends Component {
       <div className='alert-container'>
         <section className='tip-text-container'>
           <div className='tip-icon'>
-            <span></span>
-            <span></span>
+            <span className="iconfont iconinfo"></span>
           </div>
           <div className='tip-text'>{this.props.alertText}</div>
           {this.props.logout('wait')? 
