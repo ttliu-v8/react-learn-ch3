@@ -2,7 +2,7 @@
     width: 60px;
     height: 60px;
     border-radius: 30px;
-    border: 1px solid #fff;
+    border: 1px solid #eee;
     margin-left:30px;
 
 }
@@ -12,13 +12,14 @@
     background: #3190e8;
     height: 136px;
 }
-.btn-login{
+.link-login{
     border:0;
     background: transparent;
     color:#fff;
     font-size:16px;
-    margin-bottom:5px;
-    text-decoration: none;
+    text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 5px;
 }
 .user-info{
     margin-left:15px;
@@ -70,4 +71,7 @@
 }
 .txt-green{
     color:#6ac20b;
+}
+.menu-active{
+    color:#3190e8;
 }

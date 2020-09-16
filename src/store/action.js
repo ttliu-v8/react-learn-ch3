@@ -19,3 +19,15 @@ export const modifyUserInfo = (key,value) =>{
     value
   }
 }
+export const savePageInfo = (pageInfo) =>{
+  return {
+    type:user.SAVE_PAGEINFO,
+    pageInfo
+  }
+}
+export const modifyPageInfo = (pageInfo) =>{
+  return {
+    type:user.MODIFY_PAGEINFO,
+    pageInfo
+  }
+}

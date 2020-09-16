@@ -1,8 +1,14 @@
 import React, {Component} from 'react'
-
-export default function asyncComponent(importComponent)
-{
+import PropTypes from "prop-types";
+import {modifyPageInfo} from "../store/action";
+import {connect} from 'react-redux'
+import pageConfig from '../config/pageInfo'
+export default function asyncComponent (importComponent) {
   class AsyncComponent extends Component {
+    static propTypes = {
+      modifyPageInfo: PropTypes.func
+    }
+
     constructor (props) {
       super(props)
       this.state = {
@@ -11,7 +17,11 @@ export default function asyncComponent(importComponent)
     }
 
     async componentDidMount () {
+      console.log(this.props)
       const {default: component} = await importComponent()
+      let configKey = this.props.match.path
+      let currConfig = pageConfig[configKey]
+      this.props.modifyPageInfo(currConfig)
       this.setState({component})
     }
 
@@ -20,5 +30,17 @@ export default function asyncComponent(importComponent)
       return C ? <C {...this.props} /> : null
     }
   }
-  return AsyncComponent
+
+  const mapStateToProps = (state) => {
+    return {
+      pageInfo: state.pageInfo
+    }
+  }
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      modifyPageInfo: (pageInfo) => dispatch(modifyPageInfo(pageInfo))
+    }
+  }
+  const connComponent = connect(mapStateToProps, mapDispatchToProps)(AsyncComponent)
+  return connComponent
 }

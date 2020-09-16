@@ -7,7 +7,8 @@ let defaultState = {
   hasAddressList: [],
   operate: 'edit',
   userInfo: {},
-  geohash: []
+  geohash: [],
+  pageInfo: {}
 }
 export default (state = defaultState, action = {}) => {
   switch (action.type) {
@@ -19,12 +20,22 @@ export default (state = defaultState, action = {}) => {
     case user.SAVE_ATTRINFO:
       return {
         ...state,
-        ...{[action.dataType]:action.value}
+        ...{[action.dataType]: action.value}
       }
     case user.MODIFY_USERINFO:
       return {
         ...state,
-        userInfo: {...state.userInfo,[action.key]:action.value}
+        userInfo: {...state.userInfo, [action.key]: action.value}
+      }
+    case user.SAVE_PAGEINFO:
+      return {
+        ...state,
+        pageInfo: action.pageInfo
+      }
+    case user.MODIFY_PAGEINFO:
+      return{
+        ...state,
+        pageInfo: Object.assign({},state.pageInfo,action.pageInfo)
       }
     default:
       return state

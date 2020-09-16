@@ -84,6 +84,9 @@ class Login extends Component {
     this.props.saveUserInfo(userInfo)
     this.props.history.push('/profile')
   }
+  componentDidMount () {
+    this.getCaptchaCode()
+  }
   render () {
     return (
       <div>
@@ -109,8 +112,8 @@ class Login extends Component {
                 <span className="btn-yzm" onClick={this.getCaptchaCode.bind(this)}>看不清<br/>换一张</span>
               </li>
             </ul>
-            <div></div>
-            <button className="btn-login" onClick={this.mobileLogin}>登录</button>
+            <div className="tips"><span>温馨提示：</span><span> 未注册过的账号， 登录时自动注册<br />注册过的用户可凭证账号密码登录</span></div>
+            <button className="btn-login" onClick={this.mobileLogin} type={'button'}>登录</button>
           </form>
         }
         {this.state.hasAlert&&<Alert logout={()=> {return false}} alertText={this.state.alertText} closeTip={this.closeTip}/>}

@@ -44,7 +44,7 @@
     padding-top:20px;
 }
 .tip-icon span{
-    color:#f8cb86;
+    color:#ff6600;
     font-size:40px;
 }
 .tip-text {
@@ -58,7 +58,7 @@
 
 .confirm {
     margin-top: 8px;
-    background-color: #4cd964;
+    background-color: #66ccff;
     width: 100%;
     text-align: center;
     border: 1px;

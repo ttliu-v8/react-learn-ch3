@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './style/main.css'
 import './assets/iconfont/iconfont.css'
 import {Provider} from 'react-redux'
-import App from './pages/App'
+import App from './pages/App.jsx'
 import * as serviceWorker from './serviceWorker'
 import store from './store'
 
